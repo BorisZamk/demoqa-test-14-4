@@ -9,10 +9,16 @@ repositories {
 dependencies {
     testImplementation (
             "com.codeborne:selenide:6.6.6",
-            "org.junit.jupiter:junit-jupiter:5.9.0")
+            "org.junit.jupiter:junit-jupiter:5.9.0",
+            'org.slf4j:slf4j-simple:1.7.36'
+    )
 }
 
 test {
+
+    //Управление параметрами запускаемого браузера
+    //SystemProperty "chromeoptions.prefs","init.accept_languages=en"
+
     useJUnitPlatform()
 }
 

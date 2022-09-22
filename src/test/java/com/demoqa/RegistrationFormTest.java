@@ -30,7 +30,7 @@ public class RegistrationFormTest {
         String userBDay = "23";
         String userBMonth = "October";
         String userBYear = "1984";
-        String subjects = "some subjects";
+        String subjects = "English";
         String hobbie = "Reading";
         String cadress = "Где то в Москве, на какой то улице, дом 3";
         String state = "Haryana";
@@ -58,7 +58,7 @@ public class RegistrationFormTest {
         //Если в данном месте добавить .pressEnter(), то форма реагирует на это, как на нажатие на кнопку Submit.
         //И далее все остальные шаги начинают отрабатываться некорректно.
         //Данное поле я не смог заполнить даже вручну. Вероятно это какой то заложенный баг
-        $("#subjectsInput").setValue(subjects);
+        $("#subjectsInput").setValue(subjects).pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#currentAddress").setValue(cadress);
 

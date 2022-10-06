@@ -56,7 +56,12 @@ public class RegistrationFormTest {
 
 //
         buttonSubmit.click();
-        registrationFormPage.resultTableIsVisible();
+        registrationFormPage.resultTableIsVisible()
+                .checkResult("Student Name", firstName + ' ' + lastName)
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", mobile)
+                .checkResult("Date of Birth", userBDay + ' ' + userBMonth + "," + userBYear);
 
     }
     @Test
@@ -70,7 +75,11 @@ public class RegistrationFormTest {
                 .setBDay(userBYear, userBMonth, userBDay);
 
         buttonSubmit.click();
-        registrationFormPage.resultTableIsVisible();
+        registrationFormPage.resultTableIsVisible()
+                .checkResult("Student Name", firstName + ' ' + lastName)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", mobile)
+                .checkResult("Date of Birth", userBDay + ' ' + userBMonth + "," + userBYear);
 
     }
 }

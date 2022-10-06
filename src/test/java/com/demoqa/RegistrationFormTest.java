@@ -24,8 +24,6 @@ public class RegistrationFormTest {
 
     @Test
     void fillRegistrationFormTest() {
-
-
         String fname = "Борис";
         String lname = "Зам";
         String email = "boris@mail.ru";

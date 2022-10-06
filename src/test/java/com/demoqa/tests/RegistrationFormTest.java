@@ -1,6 +1,7 @@
 package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,36 +11,36 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationFormTest {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-    String firstName = "Борис";
-    String lastName = "Зам";
-    String email = "boris@mail.ru";
-    String gender = "Male";
-    String mobile = "9191919191";
-    String userBDay = "23";
-    String userBMonth = "October";
-    String userBYear = "1984";
-    String subjects = "English";
-    String hobby = "Reading";
-    String currentAddress = "Где то в Москве, на какой то улице, дом 3";
-    String state = "Haryana";
-    String city = "Panipat";
+    private SelenideElement buttonSubmit = $("#submit");
+    String firstName = "Борис",
+            lastName = "Зам",
+            email = "boris@mail.ru",
+            gender = "Male",
+            mobile = "9191919191",
+            userBDay = "23",
+            userBMonth = "October",
+            userBYear = "1984",
+            subjects = "English",
+            hobby = "Reading",
+            currentAddress = "Где то в Москве, на какой то улице, дом 3",
+            state = "Haryana",
+            city = "Panipat";
 
     @BeforeAll
     static void configure() {
 
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
-        Configuration.browserSize = "1920x1080";
-//        Configuration.headless = true;
+//        Configuration.holdBrowserOpen = true;
+//        Configuration.browserSize = "1920x1080";
+        Configuration.headless = true;
     }
 
     @Test
     void fillRegistrationFormTest() {
 
-        registrationFormPage.openPage();
-
-        //Fill out the form
-        registrationFormPage.setFirstName(firstName)
+        registrationFormPage
+                .openPage()
+                .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
                 .setGender(gender)
@@ -54,20 +55,22 @@ public class RegistrationFormTest {
 
 
 //
-        $("#submit").click();
-        $("#example-modal-sizes-title-lg").shouldBe(visible);
+        buttonSubmit.click();
+        registrationFormPage.resultTableIsVisible();
 
     }
     @Test
     void FillRegistrationFormWithMinimumData() {
-        registrationFormPage.openPage();
-        registrationFormPage.setFirstName(firstName)
+        registrationFormPage
+                .openPage()
+                .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)
                 .setMobile(mobile)
                 .setBDay(userBYear, userBMonth, userBDay);
 
-        $("#submit").click();
-        $("#example-modal-sizes-title-lg").shouldBe(visible);
+        buttonSubmit.click();
+        registrationFormPage.resultTableIsVisible();
+
     }
 }

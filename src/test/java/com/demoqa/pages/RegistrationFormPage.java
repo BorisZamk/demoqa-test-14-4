@@ -1,6 +1,8 @@
 package com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.demoqa.pages.components.CalendarComponent;
+import com.demoqa.pages.components.ResultTableComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -8,8 +10,12 @@ import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class RegistrationFormPage {
+
     private final static String TITLE_TEXT = "Student Registration Form";
-    private SelenideElement firstNameInput = $("#firstName"),
+    private CalendarComponent calendarComponent = new CalendarComponent();
+    private ResultTableComponent resultTableComponent = new ResultTableComponent();
+    private SelenideElement
+            firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
             genderInput = $("#genterWrapper"),
@@ -63,16 +69,10 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage setBDay(String userBYear, String userBMonth, String userBDay) {
+    public RegistrationFormPage setBDay(String year, String month, String day) {
 
         calendarInput.click();
-        $(".react-datepicker__year-select").selectOption(userBYear);
-        $(".react-datepicker__month-select").selectOption(userBMonth);
-        if (Integer.parseInt(userBDay) <= 9) {
-            $(format(".react-datepicker__day--00%s", userBDay)).click();
-        } else {
-            $(format(".react-datepicker__day--0%s", userBDay)).click();
-        }
+        calendarComponent.setDate(year, month, day);
 
         return this;
     }
@@ -111,6 +111,18 @@ public class RegistrationFormPage {
 
     public RegistrationFormPage uploadPictures () {
         uploadPictureInput.uploadFromClasspath("img/1.png");
+
+        return this;
+    }
+
+    public RegistrationFormPage resultTableIsVisible() {
+        resultTableComponent.checkVisibility();
+
+        return this;
+    }
+
+    public RegistrationFormPage checkResult (String key, String value) {
+        resultTableComponent.checkResult(key,value);
 
         return this;
     }

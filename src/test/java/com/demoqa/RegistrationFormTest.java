@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -19,7 +20,7 @@ public class RegistrationFormTest {
 
     @Test
     void fillRegistrationFormTest() {
-//        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;
         Configuration.browserSize = "1920x1080";
 
         String fname = "Борис";
@@ -49,7 +50,7 @@ public class RegistrationFormTest {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__year-select").selectOption(userBYear);
         $(".react-datepicker__month-select").selectOption(userBMonth);
-        if (Integer.valueOf(userBDay) <= 9) {
+        if (Integer.parseInt(userBDay) <= 9) {
             $(format(".react-datepicker__day--00%s", userBDay)).click();
         } else {
             $(format(".react-datepicker__day--0%s", userBDay)).click();
@@ -59,7 +60,7 @@ public class RegistrationFormTest {
         //И далее все остальные шаги начинают отрабатываться некорректно.
         //Данное поле я не смог заполнить даже вручну. Вероятно это какой то заложенный баг
         $("#subjectsInput").setValue(subjects).pressEnter();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText(hobbie)).click();
         $("#currentAddress").setValue(cadress);
 
        //Выбор State и City из выпадающих списков
@@ -69,7 +70,7 @@ public class RegistrationFormTest {
         $(byText(city)).click();
 
         $("#submit").click();
-        $("#example-modal-sizes-title-lg").isDisplayed();
+        $("#example-modal-sizes-title-lg").shouldBe(visible);
 
     }
 }

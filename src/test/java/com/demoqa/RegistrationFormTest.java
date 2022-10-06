@@ -15,13 +15,16 @@ public class RegistrationFormTest {
 
     @BeforeAll
     static void configure() {
+
         Configuration.baseUrl = "https://demoqa.com";
+        Configuration.holdBrowserOpen = true;
+        Configuration.browserSize = "1920x1080";
+//        Configuration.headless = true;
     }
 
     @Test
     void fillRegistrationFormTest() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.browserSize = "1920x1080";
+
 
         String fname = "Борис";
         String lname = "Зам";

@@ -5,6 +5,9 @@ import com.demoqa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+
 public class RegistrationFormTest {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
     String firstName = "Борис";
@@ -16,7 +19,7 @@ public class RegistrationFormTest {
     String userBMonth = "October";
     String userBYear = "1984";
     String subjects = "English";
-    String hobbie = "Reading";
+    String hobby = "Reading";
     String currentAddress = "Где то в Москве, на какой то улице, дом 3";
     String state = "Haryana";
     String city = "Panipat";
@@ -43,7 +46,7 @@ public class RegistrationFormTest {
                 .setMobile(mobile)
                 .setBDay(userBYear, userBMonth, userBDay)
                 .setSubject(subjects)
-                .setHobbie(hobbie)
+                .setHobby(hobby)
                 .uploadPictures()
                 .setCurrentAddress(currentAddress)
                 .setState(state)
@@ -51,13 +54,8 @@ public class RegistrationFormTest {
 
 
 //
-//       //Выбор State и City из выпадающих списков
-
-//        $("#city").click();
-//        $(byText(city)).click();
-//
-//        $("#submit").click();
-//        $("#example-modal-sizes-title-lg").shouldBe(visible);
+        $("#submit").click();
+        $("#example-modal-sizes-title-lg").shouldBe(visible);
 
     }
     @Test
@@ -68,5 +66,8 @@ public class RegistrationFormTest {
                 .setGender(gender)
                 .setMobile(mobile)
                 .setBDay(userBYear, userBMonth, userBDay);
+
+        $("#submit").click();
+        $("#example-modal-sizes-title-lg").shouldBe(visible);
     }
 }

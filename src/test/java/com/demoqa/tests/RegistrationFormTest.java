@@ -8,8 +8,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static java.lang.String.format;
 
 public class RegistrationFormTest extends TestBase{
-    RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-    private SelenideElement buttonSubmit = $("#submit");
+
+    private final SelenideElement buttonSubmit = $("#submit");
     String firstName = "Борис",
             lastName = "Зам",
             email = "boris@mail.ru",
@@ -24,9 +24,8 @@ public class RegistrationFormTest extends TestBase{
             state = "Haryana",
             city = "Panipat",
             expectedStudentName = format("%s %s", firstName, lastName),
-            expectedBDay = format("%s %s,%s",userBDay, userBMonth, userBYear);
-
-
+            expectedBDay = format("%s %s,%s",userBDay, userBMonth, userBYear),
+            expectedStateCity = format("%s %s",state, city);
 
     @Test
     void fillRegistrationFormTest() {
@@ -54,7 +53,8 @@ public class RegistrationFormTest extends TestBase{
                 .checkResult("Student Email", email)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", mobile)
-                .checkResult("Date of Birth", expectedBDay);
+                .checkResult("Date of Birth", expectedBDay)
+                .checkResult("State and City",expectedStateCity);
 
     }
     @Test

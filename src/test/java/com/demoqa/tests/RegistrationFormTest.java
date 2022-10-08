@@ -6,7 +6,6 @@ import com.demoqa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationFormTest {
@@ -65,7 +64,7 @@ public class RegistrationFormTest {
 
     }
     @Test
-    void FillRegistrationFormWithMinimumData() {
+    void fillRegistrationFormWithMinimumData() {
         registrationFormPage
                 .openPage()
                 .setFirstName(firstName)

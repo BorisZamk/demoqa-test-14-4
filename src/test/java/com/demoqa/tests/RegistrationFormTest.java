@@ -2,7 +2,11 @@ package com.demoqa.tests;
 
 import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.RegistrationFormPage;
+import com.demoqa.utils.RandomTestData;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
+
+import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static java.lang.String.format;
@@ -10,22 +14,28 @@ import static java.lang.String.format;
 public class RegistrationFormTest extends TestBase{
 
     private final SelenideElement buttonSubmit = $("#submit");
-    String firstName = "Борис",
-            lastName = "Зам",
-            email = "boris@mail.ru",
+    RandomTestData randomTestData = new RandomTestData();
+    Faker faker = new Faker();
+    String[] rndDate = randomTestData.getRandomDateParsed();
+    String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            email = format("%s.%s@%s.%s", firstName, lastName, faker.internet().domainWord(), faker.internet().domainSuffix()),
             gender = "Male",
-            mobile = "9191919191",
-            userBDay = "23",
-            userBMonth = "October",
-            userBYear = "1984",
+            mobile = faker.phoneNumber().subscriberNumber(10),
+            userBDay = rndDate[0],
+            userBMonth = rndDate[1],
+            userBYear = rndDate[2],
             subjects = "English",
             hobby = "Reading",
-            currentAddress = "Где то в Москве, на какой то улице, дом 3",
+            currentAddress = faker.address().fullAddress(),
             state = "Haryana",
             city = "Panipat",
             expectedStudentName = format("%s %s", firstName, lastName),
             expectedBDay = format("%s %s,%s",userBDay, userBMonth, userBYear),
             expectedStateCity = format("%s %s",state, city);
+
+//    public RegistrationFormTest() throws ParseException {
+//    }
 
     @Test
     void fillRegistrationFormTest() {

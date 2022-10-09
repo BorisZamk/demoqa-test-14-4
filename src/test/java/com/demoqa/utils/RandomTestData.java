@@ -43,6 +43,14 @@ public class RandomTestData {
 
         return dateParsed;
     }
+
+    public String getRandomEmail (String firstName, String lastName) {
+       return format("%s.%s@%s.%s",
+               firstName,
+               lastName,
+               faker.internet().domainWord(),
+               faker.internet().domainSuffix());
+    }
 //    @Test
 //    void main() throws ParseException {
 //        String[] rndDate = new String[3];

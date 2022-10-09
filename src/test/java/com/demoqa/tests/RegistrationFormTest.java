@@ -19,7 +19,7 @@ public class RegistrationFormTest extends TestBase{
     String[] rndDate = randomTestData.getRandomDateParsed();
     String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
-            email = format("%s.%s@%s.%s", firstName, lastName, faker.internet().domainWord(), faker.internet().domainSuffix()),
+            email = randomTestData.getRandomEmail(firstName, lastName),
             gender = "Male",
             mobile = faker.phoneNumber().subscriberNumber(10),
             userBDay = rndDate[0],
@@ -34,8 +34,6 @@ public class RegistrationFormTest extends TestBase{
             expectedBDay = format("%s %s,%s",userBDay, userBMonth, userBYear),
             expectedStateCity = format("%s %s",state, city);
 
-//    public RegistrationFormTest() throws ParseException {
-//    }
 
     @Test
     void fillRegistrationFormTest() {
@@ -64,6 +62,10 @@ public class RegistrationFormTest extends TestBase{
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", mobile)
                 .checkResult("Date of Birth", expectedBDay)
+                .checkResult("Subjects", subjects)
+                .checkResult("Hobbies", hobby)
+                .checkResult("Picture", "1.png")
+                .checkResult("Address", currentAddress)
                 .checkResult("State and City",expectedStateCity);
 
     }

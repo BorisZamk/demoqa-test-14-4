@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.RegistrationFormPage;
 import com.demoqa.utils.RandomTestData;
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -16,6 +17,28 @@ public class RegistrationFormTest extends TestBase{
     private final SelenideElement buttonSubmit = $("#submit");
     RandomTestData randomTestData = new RandomTestData();
     Faker faker = new Faker();
+
+//    @BeforeEach
+//    void prepareTestData() {
+//        String[] rndDate = randomTestData.getRandomDateParsed();
+//        String firstName = faker.name().firstName(),
+//                lastName = faker.name().lastName(),
+//                email = randomTestData.getRandomEmail(firstName, lastName),
+//                gender = "Male",
+//                mobile = faker.phoneNumber().subscriberNumber(10),
+//                userBDay = rndDate[0],
+//                userBMonth = rndDate[1],
+//                userBYear = rndDate[2],
+//                subjects = "English",
+//                hobby = "Reading",
+//                currentAddress = faker.address().fullAddress(),
+//                state = "Haryana",
+//                city = "Panipat",
+//                expectedStudentName = format("%s %s", firstName, lastName),
+//                expectedBDay = format("%s %s,%s",userBDay, userBMonth, userBYear),
+//                expectedStateCity = format("%s %s",state, city);
+//    }
+
     String[] rndDate = randomTestData.getRandomDateParsed();
     String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),

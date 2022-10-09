@@ -35,7 +35,7 @@ public class RandomTestData {
                 "November",
                 "December"};
 
-            int rndMonth = faker.date().birthday().getMonth();
+            int rndMonth = faker.number().numberBetween(0,11);
 
             dateParsed[0] = String.valueOf(faker.number().numberBetween(1,31));
             dateParsed[1] = month[rndMonth];

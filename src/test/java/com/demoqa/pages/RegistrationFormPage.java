@@ -32,9 +32,9 @@ public class RegistrationFormPage {
 
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
+        $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
 
         return this;
     }
@@ -126,5 +126,7 @@ public class RegistrationFormPage {
 
         return this;
     }
+
+
 
 }

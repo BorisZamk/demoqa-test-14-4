@@ -107,7 +107,7 @@ public class RegistrationFormTest extends TestBase{
 //
 //  1.1. Попробовать разные варианты датапровайдеров (аннотаций), минимум 3
     enum Genders {
-        Male, Female, Other, Trans
+        MALE, FEMALE, OTHER, TRANS
     }
     @DisplayName("Check of choosing different genders via @EnumSource annotation. \"Trans\"-test must be failed")
     @ParameterizedTest(name = "Check of choosing \"{0}\" gender")

@@ -6,6 +6,7 @@ import com.demoqa.pages.components.ResultTableComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byTextCaseInsensitive;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
@@ -58,8 +59,7 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setGender(String gender) {
-        genderInput.$(byText(gender)).click();
-
+        genderInput.$(byTextCaseInsensitive(gender)).click();
         return this;
     }
 

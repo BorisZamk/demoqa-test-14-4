@@ -3,6 +3,7 @@ package com.demoqa.pages;
 import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.components.CalendarComponent;
 import com.demoqa.pages.components.ResultTableComponent;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -30,7 +31,7 @@ public class RegistrationFormPage {
             uploadPictureInput = $("#uploadPicture");
 
 
-
+    @Step("Open Registration Form page")
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
@@ -40,29 +41,34 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Fill in the first name field")
     public RegistrationFormPage setFirstName(String firstName) {
         firstNameInput.setValue(firstName);
 
         return this;
     }
 
+    @Step("Fill in the last name field")
     public RegistrationFormPage setLastName(String lastName) {
         lastNameInput.setValue(lastName);
 
         return this;
     }
 
+    @Step("Fill in the e-mail field")
     public RegistrationFormPage setEmail(String email) {
         emailInput.setValue(email);
 
         return this;
     }
 
+    @Step("Select {gender} in gender check-box")
     public RegistrationFormPage setGender(String gender) {
         genderInput.$(byTextCaseInsensitive(gender)).click();
         return this;
     }
 
+    @Step("Fill in the e-mail field")
     public RegistrationFormPage setMobile(String mobile) {
         mobileInput.setValue(mobile);
 

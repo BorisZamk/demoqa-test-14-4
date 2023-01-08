@@ -68,9 +68,8 @@ public class RegistrationFormTest extends TestBase{
                 .setState(state)
                 .setCity(city);
 
-
-//
         buttonSubmit.click();
+
         registrationFormPage.resultTableIsVisible()
                 .checkResult("Student Name", expectedStudentName)
                 .checkResult("Student Email", email)

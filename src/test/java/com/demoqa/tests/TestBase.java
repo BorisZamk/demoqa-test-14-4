@@ -11,8 +11,8 @@ public class TestBase {
     @BeforeAll
     static void configure (){
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
 //        Configuration.browserSize = "1920x1080";
-//        Configuration.headless = true;
+        Configuration.headless = true;
     }
 }

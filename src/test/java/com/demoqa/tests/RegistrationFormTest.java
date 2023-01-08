@@ -2,9 +2,11 @@ package com.demoqa.tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.pages.RegistrationFormPage;
 import com.demoqa.utils.RandomTestData;
 import com.github.javafaker.Faker;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +25,6 @@ import static java.lang.String.format;
 
 @DisplayName("Testing the student registration form")
 public class RegistrationFormTest extends TestBase{
-
     private final SelenideElement buttonSubmit = $("#submit");
     RandomTestData randomTestData = new RandomTestData();
     Faker faker = new Faker();
@@ -50,6 +51,7 @@ public class RegistrationFormTest extends TestBase{
     @Test
     @DisplayName("Fill in all fields of registration form and check results table")
     void fillRegistrationFormTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
         registrationFormPage
                 .openPage()
@@ -85,6 +87,8 @@ public class RegistrationFormTest extends TestBase{
     @Test
     @DisplayName("Fill in only required fields and check results table")
     void fillRegistrationFormWithMinimumData() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         registrationFormPage
                 .openPage()
                 .setFirstName(firstName)
@@ -113,6 +117,7 @@ public class RegistrationFormTest extends TestBase{
     @ParameterizedTest(name = "Check of choosing \"{0}\" gender")
     @EnumSource(Genders.class)
     void fillFormWithDifferentGendersParamTestWithEnumSource(Genders gender) {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         registrationFormPage
                 .openPage()
                 .setFirstName(firstName)
@@ -132,6 +137,9 @@ public class RegistrationFormTest extends TestBase{
     @ValueSource(strings = {"Sports", "Reading", "Music"})
     @ParameterizedTest(name = "Check of choosing \"{0}\"")
     void fillFormWithDifferentHobbyParamTestWithValueSource(String hobby) {
+
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         registrationFormPage
                 .openPage()
                 .setFirstName(firstName)
@@ -162,6 +170,9 @@ public class RegistrationFormTest extends TestBase{
     @MethodSource()
     @ParameterizedTest(name = "Field \"{0}\" isn't filled")
     void fillFormWithoutRequiredFieldParamTestWithMethodSource(String element, String firstName, String lastName,String mobile) {
+
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         registrationFormPage
                 .openPage()
                 .setFirstName(firstName)

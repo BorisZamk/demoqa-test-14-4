@@ -21,13 +21,16 @@ public class TextBoxTests {
 
     @Test
     void fillFormTest() {
+
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
 //        Configuration.holdBrowserOpen = true;
         Configuration.browserSize = "1920x1080";
+
         String name = "Борис";
         String email = "boris@mail.ru";
         String cadress = "Где то в Москве, на какой то улице, дом 3";
         String padress = "какой то другой адрес с другой улицей, дом 30";
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открываем страницу с формой", () -> {
             open("/text-box");

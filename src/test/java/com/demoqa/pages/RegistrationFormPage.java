@@ -68,13 +68,14 @@ public class RegistrationFormPage {
         return this;
     }
 
-    @Step("Fill in the e-mail field")
+    @Step("Fill in the mobile field")
     public RegistrationFormPage setMobile(String mobile) {
         mobileInput.setValue(mobile);
 
         return this;
     }
 
+    @Step("Select birthday in calendar")
     public RegistrationFormPage setBDay(String year, String month, String day) {
 
         calendarInput.click();
@@ -83,24 +84,28 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Fill in the subject field")
     public RegistrationFormPage setSubject (String subjects) {
         subjectInput.setValue(subjects).pressEnter();
 
         return this;
     }
 
+    @Step("Select hobby in the hobby check-boxes")
     public RegistrationFormPage setHobby(String hobby) {
         hobbiesInput.$(byText(hobby)).click();
 
         return this;
     }
 
+    @Step("Fill in the current address field")
     public RegistrationFormPage setCurrentAddress (String currentAddress) {
         currentAddressInput.setValue(currentAddress);
 
         return this;
     }
 
+    @Step("Find and select the state  in the state field")
     public RegistrationFormPage setState (String state) {
         stateInput.click();
         $(byText(state)).click();
@@ -108,6 +113,7 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Find and select the city  in the city field")
     public RegistrationFormPage setCity (String city) {
         cityInput.click();
         $(byText(city)).click();
@@ -115,18 +121,21 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Upload a picture")
     public RegistrationFormPage uploadPictures () {
         uploadPictureInput.uploadFromClasspath("img/1.png");
 
         return this;
     }
 
+    @Step("Check that the Result table is visible")
     public RegistrationFormPage resultTableIsVisible() {
         resultTableComponent.checkVisibility();
 
         return this;
     }
 
+    @Step("Check that {key} field contains correct value in the Result table")
     public RegistrationFormPage checkResult (String key, String value) {
         resultTableComponent.checkResult(key,value);
 
